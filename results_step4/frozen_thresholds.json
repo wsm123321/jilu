@@ -1,0 +1,10 @@
+{
+  "relative_se": 0.1,
+  "spectrum_width": 0.5,
+  "spd_probability": 0.8,
+  "drift": 0.1,
+  "coverage": 0.02396825396825397,
+  "risk": 0.06622516556291391,
+  "risk_ucb95": 0.08889988998899889,
+  "selected_seed_clusters": 49
+}

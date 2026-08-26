@@ -1,0 +1,42 @@
+{
+  "split": "unseen",
+  "git_commit_before_run": "ca71bd556545414dea6812b4f196adee96e953e7",
+  "python": "3.12.13",
+  "numpy": "2.4.3",
+  "scipy": "1.17.1",
+  "rows": 201600,
+  "seeds": [
+    20000,
+    20099
+  ],
+  "families": [
+    [
+      "rotated_quartic",
+      0.05
+    ],
+    [
+      "rotated_quartic",
+      0.2
+    ],
+    [
+      "rotated_quartic",
+      0.5
+    ],
+    [
+      "cubic",
+      0.05
+    ],
+    [
+      "cubic",
+      0.2
+    ],
+    [
+      "oscillatory",
+      0.05
+    ],
+    [
+      "oscillatory",
+      0.2
+    ]
+  ]
+}

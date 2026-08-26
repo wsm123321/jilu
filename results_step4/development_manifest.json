@@ -1,0 +1,42 @@
+{
+  "split": "development",
+  "git_commit_before_run": "6d94aaf93c3d4d1ba320edb50892c47d409de8c8",
+  "python": "3.12.13",
+  "numpy": "2.4.3",
+  "scipy": "1.17.1",
+  "rows": 25200,
+  "seeds": [
+    0,
+    49
+  ],
+  "families": [
+    [
+      "quadratic",
+      0.0
+    ],
+    [
+      "axis_quartic",
+      0.05
+    ],
+    [
+      "axis_quartic",
+      0.2
+    ],
+    [
+      "axis_quartic",
+      0.5
+    ],
+    [
+      "cross_quartic",
+      0.05
+    ],
+    [
+      "cross_quartic",
+      0.2
+    ],
+    [
+      "cross_quartic",
+      0.5
+    ]
+  ]
+}

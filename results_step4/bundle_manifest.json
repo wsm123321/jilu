@@ -1,0 +1,49 @@
+{
+  "analysis_git_commit": "d66e944ea1ee831c1dbb93930ee042288e50c364",
+  "files": {
+    "cost_frontier.csv": {
+      "bytes": 1017,
+      "sha256": "674965386c4b101f66fe775ab3047b932dd848a2fb1652e6dc5ec716cd12ddc3"
+    },
+    "development_candidates.csv": {
+      "bytes": 18070,
+      "sha256": "46e3c5226d08698df4584629ebc26c125c4b5fecc8d36dcdabc514a6ffa3a687"
+    },
+    "development_manifest.json": {
+      "bytes": 590,
+      "sha256": "5cf50ad546325bb0623760bba5d25a0fe7167f2625f4faca8c69a905d7725473"
+    },
+    "figures/figure1_semantic_risk_coverage.png": {
+      "bytes": 42463,
+      "sha256": "3a1d99d2bd1012dc958d539d873725188d90146a82a943a8c4edea29c0f6bc52"
+    },
+    "figures/figure2_family_generalization.png": {
+      "bytes": 51416,
+      "sha256": "e01fb107bc583e8883c1a667c97ac66d87ba7ae62af10d08401ab8d337ec0425"
+    },
+    "figures/figure3_cost_coverage.png": {
+      "bytes": 45729,
+      "sha256": "2481c1b3931ef7baf0274dbe272b7cbb039fc165049f449e98605ff004a49eaf"
+    },
+    "frozen_thresholds.json": {
+      "bytes": 235,
+      "sha256": "4e6be98e53454dda2b0faf0b9d35c74b101fa08820472c47c6abe61721304b53"
+    },
+    "holdout_manifest.json": {
+      "bytes": 594,
+      "sha256": "e5f650bfce329aaf6af2cbe82f0e070acb613ca77224f49e012666f10a708c49"
+    },
+    "raw_parts_manifest.json": {
+      "bytes": 2936,
+      "sha256": "bfbf72b003e7d9a2924734a0d742d3e5453ce101fe6eaa959208910e515b9517"
+    },
+    "semantic_summary.csv": {
+      "bytes": 9676,
+      "sha256": "6b81d027c38998369f35ae2c70c05c285ee8a06d0da65c2d68aa5728990ae4a1"
+    },
+    "unseen_manifest.json": {
+      "bytes": 587,
+      "sha256": "6e4190d71063e8e8aac0f0203d98e0734030e16f4a4b13a86f2700c21c484ea4"
+    }
+  }
+}
