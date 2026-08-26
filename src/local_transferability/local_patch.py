@@ -124,9 +124,11 @@ class LocalPatch:
         return self.output_scale * basis_inverse.T @ self.curvature @ basis_inverse
 
     def recovered_canonical_curvature(self) -> FloatArray:
-        return (
-            self.basis.T @ self.physical_hessian() @ self.basis
-        ) / self.output_scale
+        from .normalization import recover_canonical_curvature
+
+        return recover_canonical_curvature(
+            self.physical_hessian(), self.basis, self.output_scale
+        )
 
     def reexpress(
         self,

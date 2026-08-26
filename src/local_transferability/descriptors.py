@@ -18,7 +18,7 @@ IntArray = NDArray[np.int64]
 class CurvatureDescriptor:
     """Coordinate-normalized curvature summary."""
 
-    strength: float
+    magnitude: float
     normalized_spectrum: FloatArray
     condition_number: float
 
@@ -36,7 +36,7 @@ def curvature_descriptor(patch: LocalPatch) -> CurvatureDescriptor:
 
     normalized_spectrum = np.sort(absolute / total)[::-1]
     return CurvatureDescriptor(
-        strength=float(np.linalg.norm(curvature, ord="fro") / np.sqrt(patch.dimension)),
+        magnitude=float(np.linalg.norm(curvature, ord="fro") / np.sqrt(patch.dimension)),
         normalized_spectrum=normalized_spectrum,
         condition_number=float(np.max(absolute) / minimum),
     )

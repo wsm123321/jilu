@@ -1,0 +1,6 @@
+# Reproduction environment used for the second-step pilot.
+# Install with: python -m pip install -r requirements-lock.txt
+numpy==2.4.3
+scipy==1.17.1
+matplotlib==3.10.8
+pytest==9.0.3

@@ -141,7 +141,7 @@ def test_ground_truth_descriptors_are_invariant(
     baseline = curvature_descriptor(patch)
     changed = curvature_descriptor(transformed)
 
-    assert changed.strength == pytest.approx(baseline.strength, rel=RTOL, abs=ATOL)
+    assert changed.magnitude == pytest.approx(baseline.magnitude, rel=RTOL, abs=ATOL)
     np.testing.assert_allclose(
         changed.normalized_spectrum,
         baseline.normalized_spectrum,

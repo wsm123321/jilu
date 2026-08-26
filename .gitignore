@@ -18,6 +18,13 @@ dist/
 .DS_Store
 Thumbs.db
 
-# Generated experiment outputs
-results/
+# Scratch artifacts; frozen pilot results are versioned for auditability.
 artifacts/
+results/*
+!results/identifiability_pilot.csv
+!results/identifiability_summary.csv
+!results/identifiability_manifest.json
+!results/figure1_identifiable_rate.png
+!results/figure2_spectrum_error.png
+!results/figure3_error_vs_condition.png
+!results/figure4_sampler_variance.png
