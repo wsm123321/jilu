@@ -84,6 +84,11 @@ def main():
  if a.split=='development':
   candidates,best=freeze(rows);write(a.output/'development_candidates.csv',candidates);frozen.write_text(json.dumps(best,indent=2),encoding='utf-8')
  else:
-  if not frozen.exists():raise SystemExit('frozen thresholds required');best=json.loads(frozen.read_text());write(a.output/f'{a.split}_classified.csv',classify(rows,best))
+  if not frozen.exists():
+   raise SystemExit('frozen thresholds required')
+  best=json.loads(frozen.read_text())
+  if best is None:
+   raise SystemExit('development produced no safe threshold')
+  write(a.output/f'{a.split}_classified.csv',classify(rows,best))
  manifest={'split':a.split,'git_commit_before_run':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'python':platform.python_version(),'numpy':np.__version__,'scipy':scipy.__version__,'rows':len(rows),'seeds':[min(seeds),max(seeds)],'families':FAMILIES[a.split]};(a.output/f'{a.split}_manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8');print(json.dumps({'split':a.split,'rows':len(rows)}))
 if __name__=='__main__':main()
