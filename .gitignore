@@ -32,3 +32,11 @@ results/*
 # Gate 3 keeps compressed raw evidence under version control; local expanded CSVs stay untracked.
 results_step3/*_raw.csv
 results_step3/*_raw.csv.gz
+
+# Gate 4 publishes compressed long tables as verifiable parts.
+results_step4/*.csv.gz
+results_step4/development_raw.csv
+results_step4/holdout_raw.csv
+results_step4/unseen_raw.csv
+results_step4/holdout_classified.csv
+results_step4/unseen_classified.csv
