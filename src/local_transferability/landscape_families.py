@@ -19,8 +19,19 @@ def gradient_state(q: float, nonstationary: bool) -> np.ndarray:
     return q * np.array([0.6, -0.4]) if nonstationary else np.zeros(2)
 
 
+def evaluate_family(points, curvature, gradient=None, intercept=0.0, *, family="quadratic", strength=0.0, phase=0.37, omega=5.3):
+    u=np.asarray(points,dtype=float);K=np.asarray(curvature,dtype=float);b=np.zeros(2) if gradient is None else np.asarray(gradient,dtype=float)
+    base=intercept+u@b+0.5*np.einsum("ni,ij,nj->n",u,K,u)
+    if family=="quadratic":extra=0.0
+    elif family=="axis_quartic":extra=np.sum(u**4,axis=1)
+    elif family=="cross_quartic":extra=u[:,0]**2*u[:,1]**2
+    elif family=="rotated_quartic":
+        direction=np.array([np.cos(phase),np.sin(phase)]);extra=(u@direction)**4
+    elif family=="cubic":extra=(u[:,0]+0.23)**3-3*(0.23**2)*u[:,0]-0.23**3
+    elif family=="oscillatory":extra=1-np.cos(omega*u[:,0]+phase)
+    else:raise ValueError(f"unknown family: {family}")
+    return base+strength*extra
+
+
 def evaluate_landscape(points, curvature, gradient=None, intercept=0.0, beta=0.0):
-    u = np.asarray(points, dtype=float)
-    K = np.asarray(curvature, dtype=float)
-    b = np.zeros(2) if gradient is None else np.asarray(gradient, dtype=float)
-    return intercept + u @ b + 0.5 * np.einsum("ni,ij,nj->n", u, K, u) + beta * np.sum(u**4, axis=1)
+    return evaluate_family(points,curvature,gradient,intercept,family="axis_quartic",strength=beta)

@@ -83,6 +83,17 @@ def sample_observed_trajectory(
     return np.asarray(points)
 
 
+def sample_adaptive_landscape_trajectory(max_n: int, seed: int, evaluator, observation_noise) -> FloatArray:
+    """Adaptive path driven only by supplied noisy landscape observations."""
+    noise=np.asarray(observation_noise,float)
+    if len(noise)<max_n: raise ValueError("observation_noise is shorter than max_n")
+    rng=np.random.default_rng(seed);initial=rng.uniform(-1,1,size=(2,2));innovations=rng.normal(size=(max(0,max_n-2),2));points=[];observed=[]
+    for index in range(max_n):
+        candidate=initial[index] if index<2 else np.clip(points[int(np.argmin(observed))]+max(.08,.85*(.78**(index-2)))*innovations[index-2],-1,1)
+        points.append(candidate);observed.append(float(evaluator(np.asarray([candidate]))[0]+noise[index]))
+    return np.asarray(points)
+
+
 def sample_design(name: str, n: int, seed: int, curvature: NDArray[np.float64]) -> FloatArray:
     if name == "sobol":
         return sample_sobol(n, seed)

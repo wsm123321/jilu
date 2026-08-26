@@ -156,7 +156,16 @@ trajectory 经验测度下，在 \(\rho=1,\beta/q=0.5\) 时投影偏差中位约
 - 普通残差不确定性不能检测中心 Hessian 与区域投影之间的目标错位；
 - 仍未研究 Operational \(\widehat B,\widehat s\)。
 
-## 8. 下一步决策
+## 8. 协议偏差与限制
+
+1. **参数化 bootstrap 未实现。** 第三步协议预留了量级、谱和最小特征值的参数化 bootstrap，但正式实现只使用曲率量级的 delta-method 相对标准误。因此报告中的 uncertainty gate 应准确称为 **Magnitude-SE Gate**，不是完整 Hessian 属性不确定性门控。
+2. **单一量级 SE 代理联合可靠事件。** 准入变量只描述量级不确定性，而可靠事件还要求带符号谱形正确和 SPD。量级 SE 小不保证谱、惯性或最小特征值正确；Gate 4 必须使用联合属性不确定性。
+3. **风险区间未按 seed 聚类。** 第三步的 Wilson 区间按条件记录计算，但真正独立的开发/保留 seed 只有 50/100，同一 seed 内共享点和噪声前缀。因此这些区间可能偏窄；Gate 4 改用 seed-level cluster bootstrap，并以风险 95% 上置信界冻结阈值。
+4. **非二次 trajectory 尚非完全自适应失配轨迹。** 第三步 B/C 的 trajectory 主要由二次部分生成后再在失配景观上评价，不能完整代表由真实带噪声、非二次观测在线驱动的分叉轨迹。Gate 4 必须让轨迹直接消费实际失配观测。
+
+这些限制不推翻 Gate 3 的核心反例：Magnitude-SE 很低仍可对应严重的中心曲率语义偏差；但它们限制了对风险区间精度和真实优化轨迹外推的宣传。
+
+## 9. 下一步决策
 
 在进入迁移前，需要先选择研究对象：
 
@@ -165,7 +174,7 @@ trajectory 经验测度下，在 \(\rho=1,\beta/q=0.5\) 时投影偏差中位约
 3. Operational \(\widehat B,\widehat s\) 只能在上述语义确定后研究；
 4. 在完成多尺度模型失配检测前，不进入 GP、BO、MAB 或源—目标迁移。
 
-## 9. 核心图
+## 10. 核心图
 
 - `results_step3/figures/figure1_noise_sample_risk.png`：样本数×噪声×采样器的 Rank-Only 错误风险；
 - `results_step3/figures/figure2_holdout_risk_coverage.png`：保留集门控风险—覆盖率；
