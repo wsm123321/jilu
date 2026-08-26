@@ -1,0 +1,33 @@
+{
+  "study": "2d-noiseless-oracle-representation-identifiability-pilot",
+  "git_commit_before_run": "8618bccb4b1c9ffa508d2b251b18b1edd9b7245b",
+  "python": "3.12.13",
+  "numpy": "2.4.3",
+  "scipy": "1.17.1",
+  "seed_count": 50,
+  "ratios": [
+    1,
+    4,
+    16
+  ],
+  "angles": [
+    0.0,
+    0.39269908169872414,
+    0.7853981633974483
+  ],
+  "designs": [
+    "sobol",
+    "uniform",
+    "trajectory"
+  ],
+  "sample_sizes": [
+    3,
+    5,
+    6,
+    8,
+    12,
+    20
+  ],
+  "row_count": 8100,
+  "command": "experiments/run_identifiability_pilot.py --overwrite"
+}
