@@ -35,7 +35,7 @@ K(q,r,\theta)=q\sqrt2Q_\theta\frac{\operatorname{diag}(1,r)}{\sqrt{1+r^2}}Q_\the
 
 - 开发集：50 seeds，129,600 条；
 - 保留集：100 个全新 seeds，259,200 条；
-- 正式仓库中的长表以确定性 `.csv.gz` 发布，解压后即为完整 CSV；汇总表和图片保持未压缩，并由 bundle manifest 记录 SHA-256；
+- 正式仓库中的长表先确定性压缩为 `.csv.gz`，再因网络代理单次 Git pack 超时而切成不超过 2 MB 的可校验分片；运行 `python experiments/reconstruct_gate3_raw.py` 可按 `raw_parts_manifest.json` 重组并验证四个完整压缩表，解压后即为原始 CSV；汇总表和图片保持未压缩；
 - 样本量：6、8、12、20；
 - 噪声比例：0、0.01、0.05、0.10；
 - 采样器：Sobol prefix、Uniform、Trajectory；

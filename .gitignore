@@ -31,3 +31,4 @@ results/*
 
 # Gate 3 keeps compressed raw evidence under version control; local expanded CSVs stay untracked.
 results_step3/*_raw.csv
+results_step3/*_raw.csv.gz
