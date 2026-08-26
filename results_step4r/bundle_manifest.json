@@ -1,0 +1,45 @@
+{
+  "analysis_git_commit": "377fc89127a04209c0382d781d843c563e617ee9",
+  "files": {
+    "corrected_family_summary.csv": {
+      "bytes": 4271,
+      "sha256": "f935e4326ac9043b857a7ac9ab544b82a091106ecbdbef3218afc3d2fd1a2e3f"
+    },
+    "corrected_overall_summary.csv": {
+      "bytes": 1337,
+      "sha256": "1cc253ae693a31b54312420e0b304176c0eb6e3edb2c45a010b90ab293560d64"
+    },
+    "development_candidates.csv": {
+      "bytes": 17381,
+      "sha256": "aa2d7e1b39b90d984c322f77fa3e43797c3468ef5da7678a1bb606f3164e4cd3"
+    },
+    "development_manifest.json": {
+      "bytes": 566,
+      "sha256": "1f2287b50f573ad7fc841571a2bc72f0faae27e312b797f69f316973722be68f"
+    },
+    "figures/figure1_corrected_risk_coverage.png": {
+      "bytes": 49653,
+      "sha256": "7750bd0db9e8894251dcefc12fc9a07f191f02bff3a4d4db82cb06a1d726e6fe"
+    },
+    "figures/figure2_corrected_family_results.png": {
+      "bytes": 52105,
+      "sha256": "d53aa787ea62ff79c18a8235d58b4c1135412cfdb439eefbb57dd99c13f0e155"
+    },
+    "figures/figure3_oracle_and_budget_comparison.png": {
+      "bytes": 56166,
+      "sha256": "de8d3d93def2184fe62db8d40182e83b400350a512cb5450802425c732ee17e1"
+    },
+    "frozen_thresholds.json": {
+      "bytes": 229,
+      "sha256": "c1b953a3de4c588e3fa6bad7b1688a51be38d8fdc2758c9716af4e9f70b70f11"
+    },
+    "holdout_manifest.json": {
+      "bytes": 570,
+      "sha256": "1a5bffdcb4601f670b14910fb7b75212c8a6e5df270055b617a71e2451a5a7af"
+    },
+    "unseen_manifest.json": {
+      "bytes": 563,
+      "sha256": "765e15aebeb2423cd6e1492e0d726f0df64a400ee9b527eb43f97a20d7b66b4a"
+    }
+  }
+}

@@ -24,5 +24,6 @@ jobs:
         run: |
           python experiments/reconstruct_gate3_raw.py
           python experiments/reconstruct_gate4_raw.py
+          python experiments/reconstruct_gate4r_raw.py
       - name: Verify evidence manifests
         run: python experiments/verify_manifests.py
