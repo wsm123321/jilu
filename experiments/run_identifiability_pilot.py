@@ -87,6 +87,12 @@ def run_rows() -> list[dict[str, object]]:
                             "tie_fraction": "",
                             "estimated_magnitude": "",
                             "estimated_major_spectrum_share": "",
+                            "signed_spectrum_shape_error": "",
+                            "pairwise_coverage": "",
+                            "estimated_min_eigenvalue": "",
+                            "is_spd": "",
+                            "inertia_mismatch": "",
+                            "negative_eigenvalue_fraction": "",
                         }
                         if estimate.identifiable and estimate.hessian is not None:
                             predicted_probe = model_values(PROBES, estimate.hessian)

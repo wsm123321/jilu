@@ -64,17 +64,21 @@ def freeze(rows):
  return thresholds
 
 def gate_rows(rows,thresholds):
+ def accepted_by(gate,r):
+  ok=bool(int(r['identifiable'])); cond=thresholds['condition']['threshold']; ou=thresholds['oracle_uncertainty']['threshold']; ru=thresholds['residual_uncertainty']['threshold']
+  if gate=='condition': ok=ok and cond is not None and float(r['standardized_condition'])<=cond
+  elif gate=='oracle_uncertainty': ok=ok and ou is not None and r['oracle_relative_se']!='' and float(r['oracle_relative_se'])<=ou
+  elif gate=='residual_uncertainty': ok=ok and ru is not None and r['residual_relative_se']!='' and float(r['residual_relative_se'])<=ru
+  elif gate=='combined': ok=ok and cond is not None and ru is not None and r['residual_relative_se']!='' and float(r['standardized_condition'])<=cond and float(r['residual_relative_se'])<=ru
+  return ok
+ groups=[('overall','all',rows)]
+ for field in ('n','eta','design','nonstationary'):
+  for value in sorted({str(r[field]) for r in rows}):groups.append((field,value,[r for r in rows if str(r[field])==value]))
  output=[]
  for gate in ('rank_only','condition','oracle_uncertainty','residual_uncertainty','combined'):
-  accepted=[]; good=[]
-  for r in rows:
-   ok=bool(int(r['identifiable'])); cond=thresholds['condition']['threshold']; ou=thresholds['oracle_uncertainty']['threshold']; ru=thresholds['residual_uncertainty']['threshold']
-   if gate=='condition': ok=ok and cond is not None and float(r['standardized_condition'])<=cond
-   elif gate=='oracle_uncertainty': ok=ok and ou is not None and r['oracle_relative_se']!='' and float(r['oracle_relative_se'])<=ou
-   elif gate=='residual_uncertainty': ok=ok and ru is not None and r['residual_relative_se']!='' and float(r['residual_relative_se'])<=ru
-   elif gate=='combined': ok=ok and cond is not None and ru is not None and r['residual_relative_se']!='' and float(r['standardized_condition'])<=cond and float(r['residual_relative_se'])<=ru
-   accepted.append(ok); good.append(bool(int(r['reliable'])) if r['reliable']!='' else False)
-  s=summarize_gate(accepted,good); output.append({'gate':gate,'total':s.total,'accepted':s.accepted,'coverage':s.coverage,'selective_risk':s.selective_risk,'accepted_failure_mass':s.coverage*s.selective_risk if s.accepted else ''})
+  for group_field,group_value,subset in groups:
+   accepted=[accepted_by(gate,r) for r in subset]; good=[bool(int(r['reliable'])) if r['reliable']!='' else False for r in subset]; s=summarize_gate(accepted,good)
+   output.append({'gate':gate,'group_field':group_field,'group_value':group_value,'total':s.total,'accepted':s.accepted,'coverage':s.coverage,'selective_risk':s.selective_risk,'accepted_failure_mass':s.coverage*s.selective_risk if s.accepted else ''})
  return output
 
 def main():
