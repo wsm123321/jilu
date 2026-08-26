@@ -19,6 +19,20 @@ def gradient_state(q: float, nonstationary: bool) -> np.ndarray:
     return q * np.array([0.6, -0.4]) if nonstationary else np.zeros(2)
 
 
+def center_hessian(base_curvature, family="quadratic", strength=0.0, phase=0.37, omega=5.3):
+    """Exact Hessian at u=0 for every frozen landscape family."""
+    K=np.asarray(base_curvature,dtype=float).copy()
+    addition=np.zeros((2,2),dtype=float)
+    if family in ("quadratic","axis_quartic","cross_quartic","rotated_quartic"):
+        pass
+    elif family=="cubic":
+        addition[0,0]=6.0*0.23*strength
+    elif family=="oscillatory":
+        addition[0,0]=(omega**2)*np.cos(phase)*strength
+    else:raise ValueError(f"unknown family: {family}")
+    return K+addition
+
+
 def evaluate_family(points, curvature, gradient=None, intercept=0.0, *, family="quadratic", strength=0.0, phase=0.37, omega=5.3):
     u=np.asarray(points,dtype=float);K=np.asarray(curvature,dtype=float);b=np.zeros(2) if gradient is None else np.asarray(gradient,dtype=float)
     base=intercept+u@b+0.5*np.einsum("ni,ij,nj->n",u,K,u)
