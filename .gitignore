@@ -40,3 +40,11 @@ results_step4/holdout_raw.csv
 results_step4/unseen_raw.csv
 results_step4/holdout_classified.csv
 results_step4/unseen_classified.csv
+
+# Gate 4-R corrected long evidence is published as deterministic parts.
+results_step4r/*.csv.gz
+results_step4r/development_raw.csv
+results_step4r/holdout_raw.csv
+results_step4r/unseen_raw.csv
+results_step4r/holdout_classified.csv
+results_step4r/unseen_classified.csv
