@@ -42,7 +42,7 @@ def generate(split,seeds):
         pseed=stable_seed('g4points',split,seed,design)
         U20=sample_adaptive_landscape_trajectory(20,pseed,f,outer_noise) if design=='trajectory' else sample_design(design,20,pseed,K)
         for no in NO:
-         Uo=U20[:no];yo=f(Uo)+outer_noise[:no];eo=fit_complete_quadratic(Uo,yo);uo=joint_curvature_uncertainty(Uo,yo,eo,stable_seed('uo',split,seed,family,strength,r,ti,nonstat,eta,design,no));outer_truth=fit_complete_quadratic(Uo,f(Uo)).hessian
+         Uo=U20[:no];yo=f(Uo)+outer_noise[:no];eo=fit_complete_quadratic(Uo,yo);uo=joint_curvature_uncertainty(Uo,yo,eo,stable_seed('uo',split,seed,family,strength,r,ti,nonstat,eta,design,no));outer_truth=(fit_complete_quadratic(U20,f(U20)).hessian if design=='trajectory' else dense_projection(K,b,family,strength,1.0))
          for rhoi in RHOI:
           active_methods=('Structured-Two-Scale',) if split=='development' else METHODS;truth_inner_points=symmetric_inner_probes(rhoi);inner_truth=fit_complete_quadratic(truth_inner_points,f(truth_inner_points)).hessian;oracle_drift=np.linalg.norm(outer_truth-inner_truth,'fro')/(.5*(np.linalg.norm(outer_truth,'fro')+np.linalg.norm(inner_truth,'fro'))+1e-12);truth_stable=oracle_drift<=.2
           for method in active_methods:
