@@ -35,6 +35,21 @@ def quadratic_design_matrix(points: ArrayLike) -> FloatArray:
     )
 
 
+def standardized_design_condition(points: ArrayLike) -> tuple[int, float, FloatArray]:
+    """Rank/condition after unit-RMS scaling nonconstant design columns."""
+    design = quadratic_design_matrix(points)
+    scales = np.sqrt(np.mean(design**2, axis=0))
+    scales[0] = 1.0
+    if np.any(scales <= 0.0):
+        return 0, float("inf"), np.zeros(min(design.shape))
+    standardized = design / scales
+    singular = np.linalg.svd(standardized, compute_uv=False)
+    tolerance = np.finfo(float).eps * max(standardized.shape) * singular[0]
+    rank = int(np.sum(singular > tolerance))
+    condition = float(singular[0] / singular[-1]) if singular[-1] > 0 else float("inf")
+    return rank, condition, singular
+
+
 def fit_complete_quadratic(points: ArrayLike, values: ArrayLike) -> QuadraticEstimate:
     u = np.asarray(points, dtype=float)
     y = np.asarray(values, dtype=float)

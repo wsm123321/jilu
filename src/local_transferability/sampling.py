@@ -48,6 +48,41 @@ def sample_trajectory(n: int, seed: int, curvature: NDArray[np.float64]) -> Floa
     return np.asarray(points)
 
 
+def sample_observed_trajectory(
+    max_n: int,
+    seed: int,
+    curvature: NDArray[np.float64],
+    gradient: NDArray[np.float64],
+    observation_noise: NDArray[np.float64],
+) -> FloatArray:
+    """Trajectory driven by observed values with shared latent innovations."""
+    if max_n <= 0:
+        raise ValueError("max_n must be positive")
+    noise = np.asarray(observation_noise, dtype=float)
+    if noise.shape[0] < max_n:
+        raise ValueError("observation_noise is shorter than max_n")
+    rng = np.random.default_rng(seed)
+    initial = rng.uniform(-1.0, 1.0, size=(2, 2))
+    innovations = rng.normal(size=(max(0, max_n - 2), 2))
+    points: list[FloatArray] = []
+    observed: list[float] = []
+    for index in range(max_n):
+        if index < 2:
+            candidate = initial[index]
+        else:
+            incumbent = points[int(np.argmin(observed))]
+            radius = max(0.08, 0.85 * (0.78 ** (index - 2)))
+            candidate = np.clip(incumbent + radius * innovations[index - 2], -1.0, 1.0)
+        value = float(
+            gradient @ candidate
+            + 0.5 * candidate @ curvature @ candidate
+            + noise[index]
+        )
+        points.append(candidate)
+        observed.append(value)
+    return np.asarray(points)
+
+
 def sample_design(name: str, n: int, seed: int, curvature: NDArray[np.float64]) -> FloatArray:
     if name == "sobol":
         return sample_sobol(n, seed)
