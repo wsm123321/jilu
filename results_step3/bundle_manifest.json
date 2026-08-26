@@ -1,0 +1,73 @@
+{
+  "analysis_git_commit": "8f32ddcb4387cda3d2185dce47fa29cb059e8f37",
+  "files": {
+    "combined_stress_manifest.json": {
+      "bytes": 598,
+      "sha256": "7efcd869a0c9029ace008c204b643760b78e8b5ce2e57df59a24563960855db9"
+    },
+    "combined_stress_raw.csv.gz": {
+      "bytes": 459221,
+      "sha256": "674c9e7b35206973f81aaa2a89f96c3a9b63058bb8f7ba19c71a97ec3223e8e1"
+    },
+    "combined_stress_summary.csv": {
+      "bytes": 1388,
+      "sha256": "f907223ab3bb8161716f2023879bed32c02e5f9ef8ea9efa4b8a563c83b02cbd"
+    },
+    "figures/figure1_noise_sample_risk.png": {
+      "bytes": 44063,
+      "sha256": "248da7da1919222974968722b5e1cd7cc3cfc5a8653c95e22b27aa94916635d1"
+    },
+    "figures/figure2_holdout_risk_coverage.png": {
+      "bytes": 43889,
+      "sha256": "cd63d092afdec3ffe757b70e5df071bd34314dc14d28a97515162127e5ea64d9"
+    },
+    "figures/figure3_scale_misspecification_bias.png": {
+      "bytes": 114449,
+      "sha256": "e15f9e08d2b2b723a445a340c83ecebf626f51ca0ee0133449fba82e6de8bb25"
+    },
+    "figures/figure4_combined_stress.png": {
+      "bytes": 30511,
+      "sha256": "e74f1fe37866ab204cd7465d0929e8d6067ebfd4cb189ea9d978ad43354e5446"
+    },
+    "frozen_thresholds.json": {
+      "bytes": 419,
+      "sha256": "5f95dbb64b8ae46021847baf9db74788fac7c0386e7664806aabcbb92e54c54a"
+    },
+    "misspecification_manifest.json": {
+      "bytes": 309,
+      "sha256": "9bb2e8df27b2e5655090bdb092ded3bf92a57a39ed43c012d09970c5c683df8d"
+    },
+    "misspecification_raw.csv.gz": {
+      "bytes": 2149620,
+      "sha256": "6eca1c23c343c38efff321cdf6f0762dd29c87dfcfc2c236b52c8657dd003694"
+    },
+    "misspecification_summary.csv": {
+      "bytes": 11720,
+      "sha256": "29f0a008913ae38113cce28d32c50c183cb9321cddad143b724030a05104389f"
+    },
+    "noise_development_manifest.json": {
+      "bytes": 655,
+      "sha256": "68a48e31766798a05c2eb049b74c91f849e771147789ab4cde3c8e25258fab30"
+    },
+    "noise_development_raw.csv.gz": {
+      "bytes": 4587138,
+      "sha256": "ee536ed856ae00e3e4b67ce8006890197e8b0491cb04c09543276d71a04d7cdf"
+    },
+    "noise_holdout_manifest.json": {
+      "bytes": 658,
+      "sha256": "cbd263e652be0e6cfe1d5b6f45d82945a35b735a3f53c1c1181f0d8ecba8b9a4"
+    },
+    "noise_holdout_raw.csv.gz": {
+      "bytes": 9206187,
+      "sha256": "606f3b560268a365bc0e0e44c019776ffafe9c8dbfa14ae43181d4fe32f92636"
+    },
+    "noise_holdout_summary.csv": {
+      "bytes": 6581,
+      "sha256": "fbae2a25af7a453eaa94115edff3e7f4d9dddc88fc42b6f3e8157998b1819152"
+    },
+    "risk_coverage_holdout.csv": {
+      "bytes": 5063,
+      "sha256": "84db773d0ea16dc6a2ccb6561417066d8a1fc5633591422e0f4de0f46fb99ce4"
+    }
+  }
+}

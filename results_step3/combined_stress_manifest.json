@@ -1,0 +1,35 @@
+{
+  "git_commit_before_run": "b958899ac4195d3de950b3a66f3f6b1939a965e0",
+  "rows": 18000,
+  "scenarios": [
+    [
+      "low_noise_weak_quartic",
+      0.01,
+      0.05,
+      0.5,
+      false
+    ],
+    [
+      "low_noise_strong_quartic",
+      0.01,
+      0.5,
+      1.0,
+      false
+    ],
+    [
+      "high_noise_weak_quartic",
+      0.1,
+      0.05,
+      0.5,
+      false
+    ],
+    [
+      "trajectory_nonstationary",
+      0.05,
+      0.2,
+      0.5,
+      true
+    ]
+  ],
+  "note": "Frozen residual gate from Gate 3A; no retuning under misspecification."
+}

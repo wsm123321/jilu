@@ -1,0 +1,17 @@
+{
+  "condition": {
+    "threshold": null,
+    "development_coverage": null,
+    "development_risk": null
+  },
+  "oracle_uncertainty": {
+    "threshold": 0.1,
+    "development_coverage": 0.5341447551797825,
+    "development_risk": 0.053965907114280745
+  },
+  "residual_uncertainty": {
+    "threshold": 0.1,
+    "development_coverage": 0.4739849484344514,
+    "development_risk": 0.07943742036655886
+  }
+}

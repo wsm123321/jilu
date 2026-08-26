@@ -1,0 +1,11 @@
+{
+  "git_commit_before_run": "498fb4828bce5523d0872bca45f40773934984a2",
+  "python": "3.12.13",
+  "numpy": "2.4.3",
+  "scipy": "1.17.1",
+  "rows": 64800,
+  "projection": {
+    "static": "8x8 Gauss-Legendre uniform-area square",
+    "trajectory": "pooled empirical 500 noiseless 20-point paths"
+  }
+}
