@@ -1,6 +1,6 @@
 """Create frozen Gate 3 summaries and figures from completed raw runs."""
 from __future__ import annotations
-import csv,hashlib,json,math,subprocess,sys
+import csv,gzip,hashlib,json,math,subprocess,sys
 from collections import defaultdict
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
@@ -8,7 +8,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 OUT=ROOT/'results_step3'; FIG=OUT/'figures'; FIG.mkdir(exist_ok=True)
 
-def read(name):return list(csv.DictReader((OUT/name).open(encoding='utf-8')))
+def read(name):
+ path=OUT/name
+ if not path.exists() and (OUT/(name+'.gz')).exists():path=OUT/(name+'.gz')
+ opener=gzip.open if path.suffix=='.gz' else open
+ with opener(path,'rt',encoding='utf-8',newline='') as f:return list(csv.DictReader(f))
 def write(name,rows):
  with (OUT/name).open('w',newline='',encoding='utf-8') as f:w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
 def wilson(success,total,z=1.96):
@@ -69,5 +73,5 @@ def figures(noise,misspec,risk,combined):
 
 def main():
  hold=read('noise_holdout_raw.csv');miss=read('misspecification_raw.csv');risk=read('risk_coverage_holdout.csv');comb=read('combined_stress_raw.csv');n=noise_summary(hold);m=misspec_summary(miss);c=combined_summary(comb);write('noise_holdout_summary.csv',n);write('misspecification_summary.csv',m);write('combined_stress_summary.csv',c);figures(n,m,risk,c)
- files=sorted([p for p in OUT.rglob('*') if p.is_file() and p.name!='bundle_manifest.json']);manifest={'analysis_git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{str(p.relative_to(OUT)).replace('\\','/'):{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in files}};(OUT/'bundle_manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8');print(json.dumps({'noise_summary':len(n),'misspec_summary':len(m),'combined_summary':len(c),'files':len(files)}))
+ files=sorted([p for p in OUT.rglob('*') if p.is_file() and p.name!='bundle_manifest.json' and not p.name.endswith('_raw.csv')]);manifest={'analysis_git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':{str(p.relative_to(OUT)).replace('\\','/'):{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in files}};(OUT/'bundle_manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8');print(json.dumps({'noise_summary':len(n),'misspec_summary':len(m),'combined_summary':len(c),'files':len(files)}))
 if __name__=='__main__':main()

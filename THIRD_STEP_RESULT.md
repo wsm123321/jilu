@@ -35,6 +35,7 @@ K(q,r,\theta)=q\sqrt2Q_\theta\frac{\operatorname{diag}(1,r)}{\sqrt{1+r^2}}Q_\the
 
 - 开发集：50 seeds，129,600 条；
 - 保留集：100 个全新 seeds，259,200 条；
+- 正式仓库中的长表以确定性 `.csv.gz` 发布，解压后即为完整 CSV；汇总表和图片保持未压缩，并由 bundle manifest 记录 SHA-256；
 - 样本量：6、8、12、20；
 - 噪声比例：0、0.01、0.05、0.10；
 - 采样器：Sobol prefix、Uniform、Trajectory；

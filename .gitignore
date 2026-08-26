@@ -28,3 +28,6 @@ results/*
 !results/figure2_spectrum_error.png
 !results/figure3_error_vs_condition.png
 !results/figure4_sampler_variance.png
+
+# Gate 3 keeps compressed raw evidence under version control; local expanded CSVs stay untracked.
+results_step3/*_raw.csv
